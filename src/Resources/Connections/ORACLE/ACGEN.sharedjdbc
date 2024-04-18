@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BWSharedResource>
+    <name>ACGEN</name>
+    <resourceType>ae.shared.JDBCSharedResource</resourceType>
+    <config>
+        <driver>%%CONNECTIONS/BBDD/ORACLE/ACGEN/Driver%%</driver>
+        <maxConnections>%%CONNECTIONS/BBDD/MaxConn%%</maxConnections>
+        <loginTimeout>%%CONNECTIONS/BBDD/LoginTimeout%%</loginTimeout>
+        <connectionType>JDBC</connectionType>
+        <UseSharedJndiConfig>false</UseSharedJndiConfig>
+        <location>%%CONNECTIONS/BBDD/ORACLE/ACGEN/Url%%</location>
+        <user>%%CONNECTIONS/BBDD/ORACLE/ACGEN/User%%</user>
+        <password>%%CONNECTIONS/BBDD/ORACLE/ACGEN/Pass%%</password>
+    </config>
+</BWSharedResource>

@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<repository xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://www.tibco.com/xmlns/repo/types/2002">
+	<globalVariables>
+		<globalVariable>
+			<name>CONUsuarioExcepcionadoBN</name>
+			<value>SP_APS_CLNTE_EXCCN_CNL_MSM_BNC</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1545072464100</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>Package</name>
+			<value>PKG_APS_EXCCN</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1545076468785</modTime>
+		</globalVariable>
+	</globalVariables>
+</repository>

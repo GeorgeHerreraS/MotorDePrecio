@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/Resources/Schemas/AltaMontoTEFRealizadaPreLife.xsd" xmlns:tns="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/WSDL/wsCL1CO_ALTMontoTEFRealizadaPreLife" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/WSDL/wsCL1CO_ALTMontoTEFRealizadaPreLife">
+    <import namespace="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/Resources/Schemas/AltaMontoTEFRealizadaPreLife.xsd" location="../Resources/Schemas/AltaMontoTEFRealizadaPreLife.xsd"/>
+    <message name="INPUT">
+        <part name="parameters" element="ns:INPUT"/>
+    </message>
+    <message name="OUTPUT">
+        <part name="parameters" element="ns:OUTPUT"/>
+    </message>
+    <portType name="PortType">
+        <operation name="setMontoTEFRealizadaPreLife">
+            <input message="tns:INPUT"/>
+            <output message="tns:OUTPUT"/>
+        </operation>
+    </portType>
+</definitions>

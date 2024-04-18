@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:pfx0="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/Resources/Schemas/BeneficiarioNuevo.xsd" xmlns:tns="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/WSDL/wsCL1CO_CONBeneficiarioNuevo" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/WSDL/wsCL1CO_CONBeneficiarioNuevo">
+    <import namespace="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/Resources/Schemas/BeneficiarioNuevo.xsd" location="../Resources/Schemas/BeneficiarioNuevo.xsd"/>
+    <message name="INPUT">
+        <part element="pfx0:INPUT" name="parameters"/>
+    </message>
+    <message name="OUTPUT">
+        <part element="pfx0:OUTPUT" name="parameters"/>
+    </message>
+    <portType name="PortType">
+        <operation name="getConsultaBeneficiarioNuevo">
+            <input message="tns:INPUT"/>
+            <output message="tns:OUTPUT"/>
+        </operation>
+    </portType>
+</definitions>

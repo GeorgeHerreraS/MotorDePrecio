@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.tibco.com/schemas/MotorDePrecio/src/Resources/Schemas/MotorDePrecio.xsd"
+	 xmlns:ns0="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/Resources/Schemas/Informacion.xsd"
+	 targetNamespace="http://www.tibco.com/schemas/MotorDePrecio/src/Resources/Schemas/MotorDePrecio.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/Resources/Schemas/Informacion.xsd" schemaLocation="Informacion.xsd"/>
+	<xs:element name="input">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Canal" type="xs:string"/>
+				<xs:element name="Campania" type="xs:string" minOccurs="0"/>
+				<xs:element name="CodProd" type="xs:string"/>
+				<xs:element name="CodSegmento" type="xs:string"/>
+				<xs:element name="CodSubSegmento" type="xs:string" minOccurs="0"/>
+				<xs:element name="CodTramoRenta" type="xs:string" minOccurs="0"/>
+				<xs:element name="Renta" type="xs:int" minOccurs="0"/>
+				<xs:element name="PlazoSolicitado" type="xs:int"/>
+				<xs:element name="MontoSolicitado" type="xs:int"/>
+				<xs:element name="IndicadorCliente" type="xs:boolean"/>
+				<xs:element name="Modelo" type="xs:string"/>
+				<xs:element name="Perfil" type="xs:string"/>
+				<xs:element name="RutEmpresa" type="xs:string" minOccurs="0"/>
+				<xs:element name="Zona" type="xs:string" minOccurs="0"/>
+				<xs:element name="CodPiloto" type="xs:string" minOccurs="0"/>
+				<xs:element name="IndicadorLife" type="xs:string" minOccurs="0"/>
+				<xs:element name="EmpresaConvenio" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="output">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns0:Informacion"/>
+				<xs:element name="Tasa" type="xs:int"/>
+				<xs:element name="Plazo" type="xs:int"/>
+				<xs:element name="EsPlazoSolicitado" type="xs:boolean"/>
+				<xs:element name="TasaMaxima" type="xs:int"/>
+				<xs:element name="NombreSegmento" type="xs:string"/>
+				<xs:element name="EsSegmentoCliente" type="xs:boolean"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

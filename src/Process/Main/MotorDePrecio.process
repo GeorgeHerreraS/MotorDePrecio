@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MotorDePrecio/src/Resources/Schemas/MotorDePrecio.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:ns="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/Resources/Schemas/Informacion.xsd" xmlns:ns1="http://www.tibco.com/pe/EngineTypes">
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/schemas/MotorDePrecio/src/Resources/Schemas/MotorDePrecio.xsd" schemaLocation="/Resources/Schemas/MotorDePrecio.xsd"/>
+    <pd:name>Process/Main/MotorDePrecio.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType ref="pfx:input"/>
+    <pd:startX>45</pd:startX>
+    <pd:startY>42</pd:startY>
+    <pd:returnBindings>
+        <pfx:output>
+            <ns:Informacion>
+                <ns:Codigo>
+                    <xsl:value-of select="$MotorPrecio/pfx:output/ns:Informacion/ns:Codigo"/>
+                </ns:Codigo>
+                <ns:Resultado>
+                    <xsl:value-of select="$MotorPrecio/pfx:output/ns:Informacion/ns:Resultado"/>
+                </ns:Resultado>
+                <ns:Mensaje>
+                    <xsl:value-of select="$MotorPrecio/pfx:output/ns:Informacion/ns:Mensaje"/>
+                </ns:Mensaje>
+            </ns:Informacion>
+            <pfx:Tasa>
+                <xsl:value-of select="$MotorPrecio/pfx:output/pfx:Tasa"/>
+            </pfx:Tasa>
+            <pfx:Plazo>
+                <xsl:value-of select="$MotorPrecio/pfx:output/pfx:Plazo"/>
+            </pfx:Plazo>
+            <pfx:EsPlazoSolicitado>
+                <xsl:value-of select="$MotorPrecio/pfx:output/pfx:EsPlazoSolicitado"/>
+            </pfx:EsPlazoSolicitado>
+            <pfx:TasaMaxima>
+                <xsl:value-of select="$MotorPrecio/pfx:output/pfx:TasaMaxima"/>
+            </pfx:TasaMaxima>
+            <pfx:NombreSegmento>
+                <xsl:value-of select="$MotorPrecio/pfx:output/pfx:NombreSegmento"/>
+            </pfx:NombreSegmento>
+            <pfx:EsSegmentoCliente>
+                <xsl:value-of select="$MotorPrecio/pfx:output/pfx:EsSegmentoCliente"/>
+            </pfx:EsSegmentoCliente>
+        </pfx:output>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType ref="pfx:output"/>
+    <pd:endX>319</pd:endX>
+    <pd:endY>60</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables>
+        <Test>
+            <xs:element xmlns:xs="http://www.w3.org/2001/XMLSchema" name="validador">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+        </Test>
+    </pd:processVariables>
+    <pd:targetNamespace>http://itg.Santander.cl/AppMotorDePreciohttp/Process/Main/MotorDePrecio</pd:targetNamespace>
+    <pd:activity name="Catch">
+        <pd:type>com.tibco.pe.core.CatchActivity</pd:type>
+        <pd:resourceType>ae.activities.catch</pd:resourceType>
+        <pd:x>576</pd:x>
+        <pd:y>59</pd:y>
+        <pd:handler>true</pd:handler>
+        <config/>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:activity name="ControlDeErrores">
+        <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
+        <pd:resourceType>ae.process.subprocess</pd:resourceType>
+        <pd:x>439</pd:x>
+        <pd:y>59</pd:y>
+        <config>
+            <processName>/Process/SubProcess/ControlDeErrores.process</processName>
+        </config>
+        <pd:inputBindings>
+            <root>
+                <elemento>
+                    <xsl:value-of select="''"/>
+                </elemento>
+                <WARNING>
+                    <xsl:value-of select="$MotorPrecio/pfx:output/ns:Informacion/ns:Codigo"/>
+                </WARNING>
+            </root>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="MotorPrecio">
+        <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
+        <pd:resourceType>ae.process.subprocess</pd:resourceType>
+        <pd:x>238</pd:x>
+        <pd:y>162</pd:y>
+        <config>
+            <processName>/Process/SubProcess/MotorPrecio.process</processName>
+        </config>
+        <pd:inputBindings>
+            <pfx:input>
+                <pfx:Canal>
+                    <xsl:value-of select="$Start/pfx:input/pfx:Canal"/>
+                </pfx:Canal>
+                <xsl:if test="$Start/pfx:input/pfx:Campania">
+                    <pfx:Campania>
+                        <xsl:value-of select="$Start/pfx:input/pfx:Campania"/>
+                    </pfx:Campania>
+                </xsl:if>
+                <pfx:CodProd>
+                    <xsl:value-of select="$Start/pfx:input/pfx:CodProd"/>
+                </pfx:CodProd>
+                <pfx:CodSegmento>
+                    <xsl:value-of select="$Start/pfx:input/pfx:CodSegmento"/>
+                </pfx:CodSegmento>
+                <xsl:if test="$Start/pfx:input/pfx:CodSubSegmento">
+                    <pfx:CodSubSegmento>
+                        <xsl:value-of select="$Start/pfx:input/pfx:CodSubSegmento"/>
+                    </pfx:CodSubSegmento>
+                </xsl:if>
+                <xsl:if test="$Start/pfx:input/pfx:CodTramoRenta">
+                    <pfx:CodTramoRenta>
+                        <xsl:value-of select="$Start/pfx:input/pfx:CodTramoRenta"/>
+                    </pfx:CodTramoRenta>
+                </xsl:if>
+                <xsl:if test="$Start/pfx:input/pfx:Renta">
+                    <pfx:Renta>
+                        <xsl:value-of select="$Start/pfx:input/pfx:Renta"/>
+                    </pfx:Renta>
+                </xsl:if>
+                <pfx:PlazoSolicitado>
+                    <xsl:value-of select="$Start/pfx:input/pfx:PlazoSolicitado"/>
+                </pfx:PlazoSolicitado>
+                <pfx:MontoSolicitado>
+                    <xsl:value-of select="$Start/pfx:input/pfx:MontoSolicitado"/>
+                </pfx:MontoSolicitado>
+                <pfx:IndicadorCliente>
+                    <xsl:value-of select="$Start/pfx:input/pfx:IndicadorCliente"/>
+                </pfx:IndicadorCliente>
+                <pfx:Modelo>
+                    <xsl:value-of select="$Start/pfx:input/pfx:Modelo"/>
+                </pfx:Modelo>
+                <pfx:Perfil>
+                    <xsl:value-of select="$Start/pfx:input/pfx:Perfil"/>
+                </pfx:Perfil>
+                <xsl:if test="$Start/pfx:input/pfx:RutEmpresa">
+                    <pfx:RutEmpresa>
+                        <xsl:value-of select="$Start/pfx:input/pfx:RutEmpresa"/>
+                    </pfx:RutEmpresa>
+                </xsl:if>
+                <xsl:if test="$Start/pfx:input/pfx:Zona">
+                    <pfx:Zona>
+                        <xsl:value-of select="$Start/pfx:input/pfx:Zona"/>
+                    </pfx:Zona>
+                </xsl:if>
+                <xsl:if test="$Start/pfx:input/pfx:CodPiloto">
+                    <pfx:CodPiloto>
+                        <xsl:value-of select="$Start/pfx:input/pfx:CodPiloto"/>
+                    </pfx:CodPiloto>
+                </xsl:if>
+                <xsl:if test="$Start/pfx:input/pfx:IndicadorLife">
+                    <pfx:IndicadorLife>
+                        <xsl:value-of select="$Start/pfx:input/pfx:IndicadorLife"/>
+                    </pfx:IndicadorLife>
+                </xsl:if>
+                <xsl:if test="$Start/pfx:input/pfx:EmpresaConvenio">
+                    <pfx:EmpresaConvenio>
+                        <xsl:value-of select="$Start/pfx:input/pfx:EmpresaConvenio"/>
+                    </pfx:EmpresaConvenio>
+                </xsl:if>
+            </pfx:input>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Assign">
+        <pd:type>com.tibco.pe.core.AssignActivity</pd:type>
+        <pd:resourceType>ae.activities.assignActivity</pd:resourceType>
+        <pd:x>145</pd:x>
+        <pd:y>47</pd:y>
+        <config>
+            <variableName>Test</variableName>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>MotorPrecio</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Catch</pd:from>
+        <pd:to>ControlDeErrores</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>ControlDeErrores</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Assign</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>Assign</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Assign</pd:from>
+        <pd:to>MotorPrecio</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

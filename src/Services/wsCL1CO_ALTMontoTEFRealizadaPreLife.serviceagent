@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceResource xmlns:wsdl="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/WSDL/wsCL1CO_ALTMontoTEFRealizadaPreLife">
+    <ns0:import xmlns:ns0="http://schemas.xmlsoap.org/wsdl/" namespace="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/WSDL/wsCL1CO_ALTMontoTEFRealizadaPreLife" location="/Services/wsCL1CO_ALTMontoTEFRealizadaPreLife.wsdl"/>
+    <config>
+        <class>com.tibco.bw.service.serviceAgent.ServiceServiceAgent</class>
+        <implType>bw</implType>
+        <groups>
+            <row isDefault="true" groupName="Default"/>
+        </groups>
+        <serviceChange>Mon Oct 08 16:27:13 CLT 2018</serviceChange>
+        <wsdl namespace="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/WS/wsCL1CO_ALTMontoTEFRealizadaPreLife" embedWsdlComponents="true" embedSchemaComponents="true" embedJndiProperties="false"/>
+        <name>wsCL1CO_ALTMontoTEFRealizadaPreLife</name>
+        <interfaceImpl>
+            <tab>
+                <tabName>PortType</tabName>
+                <tabType>bw</tabType>
+                <config>
+                    <wsdlDetail location="/Services/wsCL1CO_ALTMontoTEFRealizadaPreLife.wsdl" portType="PortType" ns="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/WSDL/wsCL1CO_ALTMontoTEFRealizadaPreLife"/>
+                    <detail>
+                        <tab>
+                            <tabName>service.definition.impl.tab.label</tabName>
+                            <tabType>impl</tabType>
+                            <config>
+                                <operations>
+                                    <row opName="setMontoTEFRealizadaPreLife" opImpl="/Services/wsCL1CO_ALTMontoTEFRealizadaPreLife.process"/>
+                                </operations>
+                            </config>
+                        </tab>
+                        <tab>
+                            <tabName>service.definition.ep.tab.label</tabName>
+                            <tabType>ep</tabType>
+                            <config>
+                                <epBindings>
+                                    <row epName="wsCL1CO_ALTMontoTEFRealizadaPreLife" epType="soap">
+                                        <config>
+                                            <epDetail>
+                                                <tab>
+                                                    <tabName>soap.service.transport.ui.transport.tab.label</tabName>
+                                                    <tabType>transport</tabType>
+                                                    <config>
+                                                        <sharedChannel>/Resources/Connections/HTTPS/HTTPS_Connect.sharedhttp</sharedChannel>
+                                                        <transport>
+                                                            <config>
+                                                                <useBasicAuthentication>false</useBasicAuthentication>
+                                                                <httpURI>/Services/AppEvaluadorRiesgo_Persona/wsCL1CO_ALTMontoTEFRealizadaPreLife</httpURI>
+                                                            </config>
+                                                        </transport>
+                                                    </config>
+                                                </tab>
+                                                <tab>
+                                                    <tabName>soap.service.transport.ui.details.tab.label</tabName>
+                                                    <tabType>details</tabType>
+                                                    <config>
+                                                        <operationStyle>document</operationStyle>
+                                                        <soapVersion>SOAP 1.1</soapVersion>
+                                                        <soap>
+                                                            <operation name="setMontoTEFRealizadaPreLife">
+                                                                <general>
+                                                                    <config>
+                                                                        <soapAction>setMontoTEFRealizadaPreLife</soapAction>
+                                                                        <operationStyle/>
+                                                                        <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
+                                                                    </config>
+                                                                </general>
+                                                            </operation>
+                                                        </soap>
+                                                    </config>
+                                                </tab>
+                                            </epDetail>
+                                        </config>
+                                    </row>
+                                </epBindings>
+                            </config>
+                        </tab>
+                    </detail>
+                </config>
+            </tab>
+        </interfaceImpl>
+        <resourceType>service.definition</resourceType>
+    </config>
+</serviceResource>

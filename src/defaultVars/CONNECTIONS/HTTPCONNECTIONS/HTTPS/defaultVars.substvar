@@ -1,0 +1,29 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<repository xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://www.tibco.com/xmlns/repo/types/2002">
+	<globalVariables>
+		<globalVariable>
+			<name>JksPsw</name>
+			<value>#!/U7KaUyJBVEEqR4B+KChGDK/vJSg9u6kkn5o0kURuak=</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>Password</type>
+			<modTime>1517838557776</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>JksURL</name>
+			<value>file:///software/tibco_bw/utilities/jks/dintamitb01.cl.bsch.jks</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1536877666257</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>Port</name>
+			<value>14330</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1536877605850</modTime>
+		</globalVariable>
+	</globalVariables>
+</repository>

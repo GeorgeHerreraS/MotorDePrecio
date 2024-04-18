@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<repository xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://www.tibco.com/xmlns/repo/types/2002">
+	<globalVariables>
+		<globalVariable>
+			<name>ExcedeMonto</name>
+			<value>Te recordamos que por tu seguridad la primera transferencia a una nueva cuenta no podrá exceder $PARAM_MontoPolitica. La segunda transferencia a esta nueva cuenta podrá realizarse luego de PARAM_HorasPolitica hrs., y por un monto máximo total de $PARAM_MontoPoliticaPreLife al mes.</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1554350880592</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>Informativo</name>
+			<value>Por tu seguridad te informamos que la primera transferencia a una nueva cuenta, no podrá exceder $PARAM_MontoPolitica. La segunda transferencia a esta nueva cuenta podrá realizarse luego de PARAM_HorasPolitica hrs., y por un monto máximo total de $PARAM_MontoPoliticaPreLife al mes.</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1554350880629</modTime>
+		</globalVariable>
+	</globalVariables>
+</repository>

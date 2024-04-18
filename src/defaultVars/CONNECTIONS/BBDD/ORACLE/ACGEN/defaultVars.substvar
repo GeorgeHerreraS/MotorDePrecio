@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<repository xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://www.tibco.com/xmlns/repo/types/2002">
+	<globalVariables>
+		<globalVariable>
+			<name>Driver</name>
+			<value>tibcosoftwareinc.jdbc.oracle.OracleDriver</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1517838557776</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>Pass</name>
+			<value>#!jFKJoMSrwEa0IKPP4fvEQq6Z9qjUVFBs</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>Password</type>
+			<modTime>1536611871029</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>Url</name>
+			<value>jdbc:tibcosoftwareinc:oracle://dsifbs1bd01.cl.bsch:1651;ServiceName=ACGEN</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1536611846816</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>User</name>
+			<value>USR_APS</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1536611583026</modTime>
+		</globalVariable>
+	</globalVariables>
+</repository>

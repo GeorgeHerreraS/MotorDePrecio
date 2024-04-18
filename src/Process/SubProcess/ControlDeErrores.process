@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:pfx="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/Resources/Schemas/Informacion.xsd" xmlns:ns="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:pfx3="http://www.tibco.com/ns/no_namespace_schema_location/Resources/Schemas/CDATA_BeneficiarioNuevo.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns0="http://www.tibco.com/pe/EngineTypes" xmlns:ns2="http://schemas.tibco.com/bw/plugins/http/5.0/httpExceptions" xmlns:tib="http://www.tibco.com/bw/xslt/custom-functions" xmlns:ns1="http://schemas.tibco.com/bw/plugins/jdbc/5.0/jdbcExceptions" xmlns:ns4="http://www.tibco.com/pe/DeployedVarsType" xmlns:ns3="http://schemas.tibco.com/bw/pe/plugin/5.0/exceptions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns31="www.tibco.com/plugin/java/JavaMethodActivityInput" xmlns:ns6="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/Resources/Schemas/SPSPSQL_CONEstadoBeneficiario.xsd" xmlns:ns42="http://itg.isban.cl/AppTransferencias/Resources/Schemas/Informacion.xsd" xmlns:ns5="http://itg.isban.cl/AppOfficeBanking/Schemas/TCFE.xsd" xmlns:ns41="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/Resources/Schemas/SPORAC_CONPoliticasDeAmbiente.xsd" xmlns:ns7="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/Resources/Schemas/SPORAC_CONUsuarioExcepcionadoBN.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:BW="java://com.tibco.pe.core.JavaCustomXPATHFunctions" xmlns:ns12="http://www.tibco.com/namespaces/tnt/plugins/json" xmlns:ns01="http://itg.santander.cl/AppOfficeBanking/Schemas/TCFE.xsd" xmlns:pfx1="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/Resources/Schemas/BeneficiarioNuevo.xsd">
+    <xsd:import namespace="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/Resources/Schemas/Informacion.xsd" schemaLocation="/src/Resources/Schemas/Informacion.xsd"/>
+    <pd:name>src/Process/SubProcess/ControlDeErrores.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType>
+        <xsd:element name="root">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element name="elemento" type="xsd:string"/>
+                    <xsd:choice minOccurs="0">
+                        <xsd:element name="WARNING" type="xsd:string"/>
+                        <xsd:element ref="pfx:Informacion"/>
+                    </xsd:choice>
+                    <xsd:any minOccurs="0" processContents="lax"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:element>
+    </pd:startType>
+    <pd:startX>27</pd:startX>
+    <pd:startY>62</pd:startY>
+    <pd:returnBindings>
+        <xsl:variable name="varJob" select="concat('Job-',$_processContext/ns0:ProcessContext/ProcessId,';',(if ($Start/root/elemento!='') then concat($Start/root/elemento,': ') else ''))"/>
+        <xsl:choose>
+            <xsl:when test="exists($Start/root/ns0:ErrorReport)">
+                <pfx:Informacion>
+                    <pfx:Codigo>
+                        <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/CodigoError"/>
+                    </pfx:Codigo>
+                    <xsl:choose>
+                        <xsl:when test="$Start/root/ns0:ErrorReport/Class = 'JDBCDriverLoadingException'">
+                            <pfx:Resultado>
+                                <xsl:value-of select="concat($varJob,normalize-space($Start/root/ns0:ErrorReport/Data/ns1:JDBCDriverLoadingException/msgCode),' ',normalize-space($Start/root/ns0:ErrorReport/Data/ns1:JDBCDriverLoadingException/msg))"/>
+                            </pfx:Resultado>
+                            <pfx:Mensaje>
+                                <xsl:value-of select="'Se ha producido un error al cargar el controlador JDBC especificado.'"/>
+                            </pfx:Mensaje>
+                        </xsl:when>
+                        <xsl:when test="$Start/root/ns0:ErrorReport/Class = 'JDBCConnectionNotFoundException'">
+                            <pfx:Resultado>
+                                <xsl:value-of select="concat($varJob,normalize-space($Start/root/ErrorReport/Data/ns1:JDBCConnectionNotFoundException/msgCode),' ',normalize-space($Start/root/ns0:ErrorReport/Data/ns1:JDBCConnectionNotFoundException/msg))"/>
+                            </pfx:Resultado>
+                            <pfx:Mensaje>
+                                <xsl:value-of select="'Se ha producido un error al intentar conectarse a la base de datos especificada.'"/>
+                            </pfx:Mensaje>
+                        </xsl:when>
+                        <xsl:when test="$Start/root/ns0:ErrorReport/Class = 'InvalidTimeZoneException'">
+                            <pfx:Resultado>
+                                <xsl:value-of select="concat($varJob,normalize-space($Start/root/ErrorReport/Data/ns1:InvalidTimeZoneException/msgCode),' ',normalize-space($Start/root/ns0:ErrorReport/Data/ns1:InvalidTimeZoneException/msg))"/>
+                            </pfx:Resultado>
+                            <pfx:Mensaje>
+                                <xsl:value-of select="'Se ha especificado un huso horario no válido.'"/>
+                            </pfx:Mensaje>
+                        </xsl:when>
+                        <xsl:when test="$Start/root/ns0:ErrorReport/Class = 'JDBCSQLException'">
+                            <pfx:Resultado>
+                                <xsl:value-of select="concat($varJob,normalize-space($Start/root/ErrorReport/Data/ns1:JDBCSQLException/msgCode),' ',normalize-space($Start/root/ns0:ErrorReport/Data/ns1:JDBCSQLException/msg))"/>
+                            </pfx:Resultado>
+                            <pfx:Mensaje>
+                                <xsl:value-of select="'Se ha producido un error de SQL.'"/>
+                            </pfx:Mensaje>
+                        </xsl:when>
+                        <xsl:when test="$Start/root/ns0:ErrorReport/Class = 'JDBCTimedOutException'">
+                            <pfx:Resultado>
+                                <xsl:value-of select="concat($varJob,normalize-space($Start/root/ErrorReport/Data/ns1:JDBCTimedOutException/msgCode),' ',normalize-space($Start/root/ns0:ErrorReport/Data/ns1:JDBCTimedOutException/msg))"/>
+                            </pfx:Resultado>
+                            <pfx:Mensaje>
+                                <xsl:value-of select="'La operación ha agotado el tiempo.'"/>
+                            </pfx:Mensaje>
+                        </xsl:when>
+                        <xsl:when test="$Start/root/ns0:ErrorReport/Class = 'LoginTimedOutException'">
+                            <pfx:Resultado>
+                                <xsl:value-of select="concat($varJob,normalize-space($Start/root/ErrorReport/Data/ns1:LoginTimedOutException/msgCode),' ',normalize-space($Start/root/ns0:ErrorReport/Data/ns1:LoginTimedOutException/msg))"/>
+                            </pfx:Resultado>
+                            <pfx:Mensaje>
+                                <xsl:value-of select="'Se ha producido un tiempo de espera al intentar conectarse a la base de datos.'"/>
+                            </pfx:Mensaje>
+                        </xsl:when>
+                        <!--CONTROL DE ERRORES SOAP-->
+                        <xsl:when test="$Start/root/ns0:ErrorReport/Class = 'defaultFaultElement'">
+                            <pfx:Resultado>
+                                <xsl:value-of select="concat($varJob,normalize-space($Start/root/ns0:ErrorReport/Data/defaultFaultElement/faultcode),' ',normalize-space($Start/root/ns0:ErrorReport/Data/defaultFaultElement/faultstring))"/>
+                            </pfx:Resultado>
+                            <pfx:Mensaje>
+                                <xsl:value-of select="'Error al Consultar, favor intentar nuevamente.'"/>
+                            </pfx:Mensaje>
+                        </xsl:when>
+                        <xsl:when test="$Start/root/ns0:ErrorReport/Class = 'HttpClientException'">
+                            <pfx:Resultado>
+                                <xsl:value-of select="concat($varJob,normalize-space($Start/root/ns0:ErrorReport/Data/ns2:HttpClientException/msgCode),' ',normalize-space($Start/root/ns0:ErrorReport/Data/ns2:HttpClientException/msg))"/>
+                            </pfx:Resultado>
+                            <pfx:Mensaje>
+                                <xsl:value-of select="'No se pudo conectar con cliente, Intente mas tarde.'"/>
+                            </pfx:Mensaje>
+                        </xsl:when>
+                        <xsl:when test="$Start/root/ns0:ErrorReport/Class = 'HttpServerException'">
+                            <pfx:Resultado>
+                                <xsl:value-of select="concat($varJob,normalize-space($Start/root/ns0:ErrorReport/Data/ns2:HttpServerException/msgCode),' ',normalize-space($Start/root/ns0:ErrorReport/Data/ns2:HttpServerException/msg))"/>
+                            </pfx:Resultado>
+                            <pfx:Mensaje>
+                                <xsl:value-of select="'No se recibió respuesta del servidor, Intente mas tarde.'"/>
+                            </pfx:Mensaje>
+                        </xsl:when>
+                        <xsl:when test="$Start/root/ns0:ErrorReport/Class = 'HttpCommunicationException'">
+                            <pfx:Resultado>
+                                <xsl:value-of select="concat($varJob,normalize-space($Start/root/ns0:ErrorReport/Data/ns2:HttpCommunicationException/msgCode),' ',normalize-space($Start/root/ns0:ErrorReport/Data/ns2:HttpCommunicationException/msg))"/>
+                            </pfx:Resultado>
+                            <pfx:Mensaje>
+                                <xsl:value-of select="'Problemas al ejecutar el servicio. Intente nuevamente'"/>
+                            </pfx:Mensaje>
+                        </xsl:when>
+                        <xsl:when test="$Start/root/ns0:ErrorReport/Class = 'ActivityTimedOutException'">
+                            <pfx:Resultado>
+                                <xsl:value-of select="concat($varJob,normalize-space($Start/root/ns0:ErrorReport/Data/ns3:ActivityTimedOutException/msgCode),' ',normalize-space($Start/root/ns0:ErrorReport/Data/ns3:ActivityTimedOutException/msg))"/>
+                            </pfx:Resultado>
+                            <pfx:Mensaje>
+                                <xsl:value-of select="'Tiempo de espera agotado, favor intente nuevamente.'"/>
+                            </pfx:Mensaje>
+                        </xsl:when>
+                        <xsl:when test="$Start/root/ns0:ErrorReport/Class = 'ActivityException'">
+                            <pfx:Resultado>
+                                <xsl:value-of select="concat($varJob,normalize-space($Start/root/ns0:ErrorReport/Data/defaultFaultElement/faultcode),' ',normalize-space($Start/root/ns0:ErrorReport/Data/defaultFaultElement/faultstring))"/>
+                            </pfx:Resultado>
+                            <xsl:choose>
+                                <xsl:when test="normalize-space($Start/root/ns0:ErrorReport/Data/defaultFaultElement/faultstring)='No hits found'">
+                                    <pfx:Mensaje>
+                                        <xsl:value-of select="'No se han encontrado resultados'"/>
+                                    </pfx:Mensaje>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <pfx:Mensaje>
+                                        <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/MsjError"/>
+                                    </pfx:Mensaje>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:variable name="MsjSaltoLinea" select="tib:substring-before-last(substring-before(substring-after($Render-JSON-Msg-1/ns12:ActivityOutputClass/jsonString, '&quot;Msg&quot;:&quot;'), '\n'), '}')"/>
+                            <pfx:Resultado>
+                                <xsl:value-of select="concat($varJob,$Start/root/ns0:ErrorReport/MsgCode,' ',(if ($MsjSaltoLinea='') then $Map-Data/root/Msj else $MsjSaltoLinea),' - Error en [',$Map-Data/root/ProcessStack,']')"/>
+                            </pfx:Resultado>
+                            <pfx:Mensaje>
+                                <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/MsjError"/>
+                            </pfx:Mensaje>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </pfx:Informacion>
+            </xsl:when>
+            <xsl:when test="exists($Start/root/pfx:Informacion)">
+                <pfx:Informacion>
+                    <pfx:Codigo>
+                        <xsl:value-of select="$Start/root/pfx:Informacion/pfx:Codigo"/>
+                    </pfx:Codigo>
+                    <pfx:Resultado>
+                        <xsl:value-of select="concat($varJob,$Start/root/pfx:Informacion/pfx:Resultado)"/>
+                    </pfx:Resultado>
+                    <pfx:Mensaje>
+                        <xsl:value-of select="$Start/root/pfx:Informacion/pfx:Mensaje"/>
+                    </pfx:Mensaje>
+                </pfx:Informacion>
+            </xsl:when>
+            <xsl:otherwise>
+                <pfx:Informacion>
+                    <pfx:Codigo>
+                        <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/CodigoOk"/>
+                    </pfx:Codigo>
+                    <pfx:Resultado>
+                        <xsl:value-of select="concat($varJob,if($Start/root/WARNING='') then $_globalVariables/ns4:GlobalVariables/INFO/MsjOk else $Start/root/WARNING)"/>
+                    </pfx:Resultado>
+                    <pfx:Mensaje>
+                        <xsl:value-of select="$_globalVariables/ns4:GlobalVariables/INFO/MsjOk"/>
+                    </pfx:Mensaje>
+                </pfx:Informacion>
+            </xsl:otherwise>
+        </xsl:choose>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType ref="pfx:Informacion"/>
+    <pd:endX>451</pd:endX>
+    <pd:endY>64</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables/>
+    <pd:targetNamespace>http://itg.santander.cl/ControlDeErrores</pd:targetNamespace>
+    <pd:activity name="Log">
+        <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
+        <pd:resourceType>ae.process.subprocess</pd:resourceType>
+        <pd:x>293</pd:x>
+        <pd:y>64</pd:y>
+        <config>
+            <processName>/Process/SubProcess/EscribeEnElLog.process</processName>
+        </config>
+        <pd:inputBindings>
+            <root>
+                <Proceso>
+                    <xsl:value-of select="BW:getCurrentProcessName($_processContext/ns0:ProcessContext/ProcessId)"/>
+                </Proceso>
+                <Mensaje>
+                    <titulo>
+                        <xsl:value-of select="'Control de errores'"/>
+                    </titulo>
+                    <xml>
+                        <xsl:copy-of select="$Start/root"/>
+                    </xml>
+                </Mensaje>
+            </root>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Render JSON Msg">
+        <pd:type>com.tibco.plugin.json.activities.JSONRenderActivity</pd:type>
+        <pd:resourceType>ae.activities.JSONRenderActivity</pd:resourceType>
+        <pd:x>232</pd:x>
+        <pd:y>166</pd:y>
+        <config>
+            <SchemaType>xsdType</SchemaType>
+            <BadgerfishCheck>false</BadgerfishCheck>
+            <removeRootElementForInput>false</removeRootElementForInput>
+            <ActivityInputEditor>
+                <xsd:element name="Msg" type="xsd:string"/>
+            </ActivityInputEditor>
+        </config>
+        <pd:inputBindings>
+            <ns12:ActivityInputClass>
+                <Msg>
+                    <xsl:value-of select="$Start/root/ns0:ErrorReport/Msg"/>
+                </Msg>
+            </ns12:ActivityInputClass>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Map Data">
+        <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
+        <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
+        <pd:x>336</pd:x>
+        <pd:y>166</pd:y>
+        <config>
+            <element>
+                <xsd:element name="root">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="MsjSaltoLinea" type="xsd:string"/>
+                            <xsd:element name="MsjJson" type="xsd:string"/>
+                            <xsd:element name="Msj" type="xsd:string"/>
+                            <xsd:element name="ProcessStack" type="xsd:string"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </element>
+        </config>
+        <pd:inputBindings>
+            <xsl:variable name="MsjSaltoLinea" select="tib:substring-before-last(substring-before(substring-after($Render-JSON-Msg/ns12:ActivityOutputClass/jsonString, '&quot;Msg&quot;:&quot;'), '\n'), '}')"/>
+            <xsl:variable name="MsjJson" select="if ($MsjSaltoLinea!='') then $MsjSaltoLinea else $Start/root/ns0:ErrorReport/Msg"/>
+            <xsl:variable name="Msj" select="if (tib:index-of($MsjJson, ' at ')>0) then substring-before($MsjJson, ' at ') &#xA;else if (tib:index-of($MsjJson, ' http: ')>0) then substring-before($MsjJson, ' http: ') &#xA;else if (tib:index-of($MsjJson, ' https: ')>0) then substring-before($MsjJson, ' https: ') &#xA;else $MsjJson"/>
+            <xsl:variable name="ProcessStack" select="if (tib:index-of($Start/root/ns0:ErrorReport/ProcessStack, '>')>0) &#xA;then tib:substring-after-last($Start/root/ns0:ErrorReport/ProcessStack, '>') else $Start/root/ns0:ErrorReport/ProcessStack"/>
+            <root>
+                <MsjSaltoLinea>
+                    <xsl:value-of select="$MsjSaltoLinea"/>
+                </MsjSaltoLinea>
+                <MsjJson>
+                    <xsl:value-of select="$MsjJson"/>
+                </MsjJson>
+                <Msj>
+                    <xsl:value-of select="$Msj"/>
+                </Msj>
+                <ProcessStack>
+                    <xsl:value-of select="$ProcessStack"/>
+                </ProcessStack>
+            </root>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Render-JSON-Msg-1">
+        <pd:type>com.tibco.plugin.json.activities.JSONRenderActivity</pd:type>
+        <pd:resourceType>ae.activities.JSONRenderActivity</pd:resourceType>
+        <pd:x>452</pd:x>
+        <pd:y>167</pd:y>
+        <config>
+            <SchemaType>xsdType</SchemaType>
+            <BadgerfishCheck>false</BadgerfishCheck>
+            <removeRootElementForInput>false</removeRootElementForInput>
+            <ActivityInputEditor>
+                <xsd:element name="Msg" type="xsd:string"/>
+            </ActivityInputEditor>
+        </config>
+        <pd:inputBindings>
+            <ns12:ActivityInputClass>
+                <Msg>
+                    <xsl:value-of select="$Map-Data/root/Msj"/>
+                </Msg>
+            </ns12:ActivityInputClass>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>Log</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Log</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>Render JSON Msg</pd:to>
+        <pd:xpathDescription>ErrorReport</pd:xpathDescription>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>xpath</pd:conditionType>
+        <pd:xpath>exists($Start/root/ns0:ErrorReport)</pd:xpath>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Render JSON Msg</pd:from>
+        <pd:to>Map Data</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Map Data</pd:from>
+        <pd:to>Render-JSON-Msg-1</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Render-JSON-Msg-1</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

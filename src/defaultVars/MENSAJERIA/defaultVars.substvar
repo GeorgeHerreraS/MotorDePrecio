@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<repository xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://www.tibco.com/xmlns/repo/types/2002">
+	<globalVariables>
+		<globalVariable>
+			<name>ExcedeMonto</name>
+			<value>Te recordamos que por tu seguridad la primera transferencia a una nueva cuenta no podrá exceder $PARAM_MontoPolitica. La segunda transferencia a esta nueva cuenta podrá realizarse luego de PARAM_HorasPolitica hrs., y por un monto máximo diario de $5.000.000.</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1551887370032</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>Fecha2daTEFMenorA1raTEF</name>
+			<value>Podrás volver a transferir a este destinatario dentro de PARAM_HorasPolitica horas.</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1550661686220</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>Informativo</name>
+			<value>Por tu seguridad te informamos que la primera transferencia a una nueva cuenta, no podrá exceder $PARAM_MontoPolitica. La segunda transferencia a esta nueva cuenta podrá realizarse luego de PARAM_HorasPolitica hrs., y por un monto máximo diario de $5.000.000.</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1551887163112</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>NoCumplePoliticaHoras</name>
+			<value>Te recordamos que por tu seguridad no podrás volver a transferir a esta nueva cuenta ahora. Podrás transferir nuevamente el día PARAM_Fecha_dd_de_mmm_a_las_hh_mm hrs.</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1551880068571</modTime>
+		</globalVariable>
+	</globalVariables>
+</repository>

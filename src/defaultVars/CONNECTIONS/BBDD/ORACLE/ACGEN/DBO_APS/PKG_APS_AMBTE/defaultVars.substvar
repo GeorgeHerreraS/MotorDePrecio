@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<repository xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://www.tibco.com/xmlns/repo/types/2002">
+	<globalVariables>
+		<globalVariable>
+			<name>ConBancoExepcion</name>
+			<value>SP_APS_CRDND_AMBTE_PRSNA</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1591827332562</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>Package</name>
+			<value>PKG_APS_AMBTE</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1591827332652</modTime>
+		</globalVariable>
+	</globalVariables>
+</repository>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/Services/wsCL1CO_CONBANCORIESGOSO" xmlns:pfx0="http://www.tibco.com/schemas/src/Resources/Schemas/Schema.xsd" targetNamespace="http://itg.santander.cl/AppEvaluadorRiesgo_Persona/Services/wsCL1CO_CONBANCORIESGOSO">
+    <import namespace="http://www.tibco.com/schemas/src/Resources/Schemas/Schema.xsd" location="../Resources/Schemas/CL1CO_CONBANCORIESGOSO.xsd"/>
+    <message name="inputSet">
+        <part element="pfx0:inputSet" name="parameters"/>
+    </message>
+    <message name="output">
+        <part element="pfx0:output" name="parameters"/>
+    </message>
+    <portType name="portType">
+        <operation name="getBANCORIESGOSO">
+            <input message="tns:inputSet"/>
+            <output message="tns:output"/>
+        </operation>
+    </portType>
+</definitions>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Repository:repository xmlns:Repository="http://www.tibco.com/xmlns/repo/types/2002">
+    <enterpriseArchive>
+        <sharedArchive name="Shared Archive">
+            <resourceType>shared.archive.resource</resourceType>
+            <authorProperty>eacevedo</authorProperty>
+        </sharedArchive>
+        <processArchive name="AppEvaluadorRiesgo_Persona">
+            <resourceType>process.archive.resource</resourceType>
+            <authorProperty>Integracion</authorProperty>
+            <processProperty>/Services/wsCL1CO_ALTMontoTEFRealizadaPreLife.serviceagent,/Services/wsCL1CO_CONPoliticas.serviceagent,/Services/wsCL1CO_CONClientePreLife.serviceagent,/Services/wsCL1CO_CONBeneficiarioNuevo.serviceagent,/Services/wsCL1CO_CONBANCORIESGOSO.serviceagent,/Services/wsCL1CO_CONEVALUADORDERIESGO.serviceagent</processProperty>
+        </processArchive>
+        <versionProperty>v10</versionProperty>
+        <authorProperty>clagos</authorProperty>
+        <addServiceSettableGvars>true</addServiceSettableGvars>
+        <name>AppEvaluadorRiesgo_Persona</name>
+        <designer>
+            <lockedProperties/>
+            <fixedChildren/>
+            <resourceDescriptions/>
+        </designer>
+        <fileLocationProperty>\\vippnas-vdi-i.corporativo.cl.corp\userenviroment$\FR\id18794\Documents\EAR\v4\AppEvaluadorRiesgo_Persona v10.ear</fileLocationProperty>
+        <description>&lt;b&gt;v10&lt;/b&gt; Creacion de evaluador de riesgo para banco riesgoso
+&lt;br&gt;&lt;b&gt;v9&lt;/b&gt; Corrección error en creación de fecha de primera TEF
+&lt;br&gt;&lt;b&gt;v8&lt;/b&gt; Se elimina en la validación de primera TEF el control de horas hábiles, tanto a nivel de cálculo como de mensajería
+&lt;br&gt;Mejora en registro de log
+&lt;br&gt;&lt;b&gt;v7&lt;/b&gt; Diferenciación de mensajes para clientes PreLife sin tarjeta de coordenadas - Thu Apr 04 02:46:00 CLST 2019
+&lt;br&gt;&lt;b&gt;v6&lt;/b&gt; Nueva definición de mensajes informativos de control de beneficiario nuevo - Wed Mar 06 15:15:00 CLST 2019
+&lt;br&gt;&lt;b&gt;v5&lt;/b&gt; Cambio de PKG para SP_APS_MNT_ACM_DRO y SP_APS_VAL_MNT_ACM
+&lt;br&gt;Unión versiones v1.7, v1.9.3 y v4&lt;/b&gt; - Wed Feb 27 02:51:00 CLST 2019
+&lt;br&gt;Servicios:
+&lt;br&gt;wsCL1CO_CONBeneficiarioNuevo y wsCL1CO_CONBeneficiarioNuevoACT
+&lt;br&gt;wsCL1CO_ALTMontoTEFRealizadaPreLife
+&lt;br&gt;wsCL1CO_CONClientePreLife
+&lt;br&gt;wsCL1CO_CONPoliticas
+&lt;br&gt;&lt;br&gt;&lt;b&gt;v4&lt;/b&gt; Nuevo servicio CL1CO_CONClientePreLife para identificar si el cliente es PreLife y posee Super Clave asignada, y además retorna los montos máximos de TEF para PreLife - Fri Feb 08 12:44:00 CLST 2019
+&lt;br&gt;v3 Control códigos de montos (111=CLP, 112=USD, 113=EUR) (Wed Jan 16 18:18:00 CLST 2019)
+&lt;br&gt;v3 Nuevo campo IN_COD_SGM (codigo segmento) en SP_APS_CRDND_AMBTE (consulta politicas) (Mon Jan 14 16:48:00 CLST 2019)
+&lt;br&gt;v2.1 Ajuste servicio CONPoliticas (Wed Jan 09 16:22:00 CLST 2019)
+&lt;br&gt;v2 Validaciones PreLife (Fri Jan 04 17:51:00 CLST 2019 )
+&lt;br&gt;&lt;b&gt;v1.7 Union v1.9.3&lt;/b&gt;, más nuevo PKG PKG_APS_AMBTE_ACT para SP_APS_CRDND_AMBTE de 1ra TEF y nuevo SP sp_hob_cnr_trf_bfc_nvo_act - Wed Feb 20 13:15:00 CLST 2019
+&lt;br&gt;&lt;b&gt;v1.9.3&lt;/b&gt; Corrección mapeo Rut Origen y Rut Destino a SP sp_hob_cnr_trf_bfc_nvo (CONBeneficiarioNuevo) - Thu Feb 07 14:12:00 CLST 2019
+&lt;br&gt;v1.9.2 Nuevo campo IN_COD_SGM (codigo segmento) en SP_APS_CRDND_AMBTE (consulta politicas)
+&lt;br&gt;v1.9.1 Codigo moneda 'CLP' en duro dentro de la aplicación
+&lt;br&gt;v1.9 Consulta Usuario Excepcionado BN, nuevo campo IN_TPO_MND en SP_APS_CRDND_AMBTE y mensajería parametrizada en variables globales
+&lt;br&gt;v1.8 Informar a SP cuenta destino para ampliar filtro
+&lt;br&gt;&lt;b&gt;v1.7&lt;/b&gt; Modificación mensaje de validación para politica de horas - Thu Nov 08 02:47:00 CLST 2018
+&lt;br&gt;v1.6 Mejora en los mensajes de retorno
+&lt;br&gt;v1.5.1 WS solo por HTTPS
+&lt;br&gt;v1.5 Retornar mensaje personalizado en caso de Decline
+&lt;br&gt;v1.4 Informar solo las politicas para Recomendación Decline, además en en campo DESCRIPCION de politica indicar diferencia de la politica por el rechazo
+&lt;br&gt;v1.3 Cambio en el retorno de politicas de acuerdo a la evaluacion realizada
+&lt;br&gt;v1.2 Cambio PKG AMB de APS y flujo 2da TEF
+&lt;br&gt;v1.1 Disponilizar WS por HTTP
+&lt;br&gt;v1 Versión inicial</description>
+    </enterpriseArchive>
+</Repository:repository>

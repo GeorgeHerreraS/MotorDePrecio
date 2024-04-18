@@ -1,0 +1,29 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<repository xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://www.tibco.com/xmlns/repo/types/2002">
+	<globalVariables>
+		<globalVariable>
+			<name>Dimensions</name>
+			<value>ITG:APPEVALUADORRIESGO_PERSONA - ITG_CR_ - ITG_VRS_TIBCO_</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1557797498425</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>EAR</name>
+			<value>v9 - 17-Mayo-2019 Piv #1</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1558127264341</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>SVN</name>
+			<value>\SERVICIOSTRANSVERSALES\EvaluadorRiesgo</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1550661451573</modTime>
+		</globalVariable>
+	</globalVariables>
+</repository>

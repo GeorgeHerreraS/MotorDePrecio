@@ -1,0 +1,29 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<repository xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://www.tibco.com/xmlns/repo/types/2002">
+	<globalVariables>
+		<globalVariable>
+			<name>TCFECONDatosFeriados</name>
+			<value>https://viphbusi3-tbint1-i.cl.bsch:13160/Services/wsCL1MDTCFE_CONDatosFeriados</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1536768825484</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>TimeOut</name>
+			<value>15</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1536768825459</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>WSUSERINFOEX-ConConsultaCurusConnect</name>
+			<value>https://dgstcaqtb60.cl.bsch:14840/Services/AppGenericosGeneral2/wsCL1WSUSERINFOEX-CONCurusConnect</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1546025001142</modTime>
+		</globalVariable>
+	</globalVariables>
+</repository>

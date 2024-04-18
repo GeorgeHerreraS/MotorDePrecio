@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<repository xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://www.tibco.com/xmlns/repo/types/2002">
+	<globalVariables>
+		<globalVariable>
+			<name>ALTMontoTEFRealizada</name>
+			<value>SP_APS_MNT_ACM_DRO</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1546034413724</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>CONMontoAcumulado</name>
+			<value>SP_APS_VAL_MNT_ACM</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1546034468921</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>CONPoliticasAmbiente</name>
+			<value>SP_APS_CRDND_AMBTE</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1550661451572</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>Package</name>
+			<value>PKG_APS_AMBTE_ACT</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1550666176948</modTime>
+		</globalVariable>
+	</globalVariables>
+</repository>

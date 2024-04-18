@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://itg.isban.cl/CL/TC/1MDTCGG/WSDL/DatosFeriados" xmlns:ns0="http://itg.isban.cl/AppOfficeBanking/Schemas/TCFE.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="Untitled" targetNamespace="http://itg.isban.cl/CL/TC/1MDTCGG/WSDL/DatosFeriados">
+    <wsdl:types>
+        <xs:schema xmlns="http://itg.isban.cl/AppOfficeBanking/Schemas/TCFE.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://itg.isban.cl/AppOfficeBanking/Schemas/TCFE.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="INPUT">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="USUARIO-ALT" type="xs:string"/>
+                        <xs:element name="TERMINAL-ALT" type="xs:string"/>
+                        <xs:element name="CANAL-ID" type="xs:string"/>
+                        <xs:element name="FILLER" type="xs:string"/>
+                        <xs:element name="OPCION" type="xs:string"/>
+                        <xs:element name="FECHA" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TIB_TCFE_CONDatosFeriados_Response">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="INFO">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="CODERR" type="xs:string"/>
+                                    <xs:element name="DESERR" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="OUTPUT" minOccurs="0">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="ESCALARES1" minOccurs="0">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="FECHA" type="xs:string" minOccurs="0"/>
+                                                <xs:element name="INDDIA" type="xs:string" minOccurs="0"/>
+                                                <xs:element name="GLSINDD" type="xs:string" minOccurs="0"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="ESCALARES2" minOccurs="0">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="FECHA" type="xs:string" minOccurs="0"/>
+                                                <xs:element name="INDDIA" type="xs:string" minOccurs="0"/>
+                                                <xs:element name="FECHABA" type="xs:string" minOccurs="0"/>
+                                                <xs:element name="FECHABS" type="xs:string" minOccurs="0"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="wsCL1MDTCFE_CONDatosFeriados">
+        <wsdl:port name="wsCL1MDTCFE_CONDatosFeriados" binding="tns:wsCL1MDTCFE_CONDatosFeriadosBinding">
+            <soap:address location="https://localhost:13160/Services/wsCL1MDTCFE_CONDatosFeriados"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="portType">
+        <wsdl:operation name="getDatosFeriados">
+            <wsdl:input message="tns:INPUT"/>
+            <wsdl:output message="tns:TIB_TCFE_CONDatosFeriados_Response"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="wsCL1MDTCFE_CONDatosFeriadosBinding" type="tns:portType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getDatosFeriados">
+            <soap:operation style="document" soapAction="/Services/wsCL1MDTCFE_CONDatosFeriados/getDatosFeriados"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="INPUT">
+        <wsdl:part name="parameters" element="ns0:INPUT"/>
+    </wsdl:message>
+    <wsdl:message name="TIB_TCFE_CONDatosFeriados_Response">
+        <wsdl:part name="parameters" element="ns0:TIB_TCFE_CONDatosFeriados_Response"/>
+    </wsdl:message>
+</wsdl:definitions>
